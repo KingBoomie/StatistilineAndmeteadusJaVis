@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2005
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "StatistilineAndmeteadusJaVis", "StatistilineAndmeteadusJaVis\StatistilineAndmeteadusJaVis.rxproj", "{BD925759-33E5-417F-8CB3-C2CC61B657AA}"
+EndProject
+Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "kodu1", "kodu1\kodu1.rxproj", "{EDD73AC1-E037-40FB-8CF9-0E179893B158}"
+EndProject
+Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "kodu2", "kodu2\kodu2.rxproj", "{91A91323-85A5-4222-A4AB-21E34C93CFDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{BD925759-33E5-417F-8CB3-C2CC61B657AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD925759-33E5-417F-8CB3-C2CC61B657AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD925759-33E5-417F-8CB3-C2CC61B657AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDD73AC1-E037-40FB-8CF9-0E179893B158}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDD73AC1-E037-40FB-8CF9-0E179893B158}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDD73AC1-E037-40FB-8CF9-0E179893B158}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDD73AC1-E037-40FB-8CF9-0E179893B158}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91A91323-85A5-4222-A4AB-21E34C93CFDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91A91323-85A5-4222-A4AB-21E34C93CFDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91A91323-85A5-4222-A4AB-21E34C93CFDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91A91323-85A5-4222-A4AB-21E34C93CFDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

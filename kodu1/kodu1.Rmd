@@ -1,0 +1,78 @@
+---
+title: "Aktsiaturu ülevaade"
+author: "Kristjan Laht"
+output: 
+    pdf_document
+---
+
+```{r echo=FALSE}
+library(dplyr)
+library(knitr)
+options(scipen=1000)
+aktsiad <- read.csv(file = "C:\\Projects\\Programming\\AI\\Stat\\StatistilineAndmeteadusJaVis\\kodu1\\Aktsiad 2018.csv", header = TRUE, row.names = NULL, sep = ";", dec = ".", quote = "\"", comment.char = "")
+```
+
+## Ülesanne 1 - suurimad tõusjad, suurimad kukkujad
+
+### tõusjad
+```{r echo=FALSE}
+aktsiad %>%
+    top_n(3, tootlus) %>%
+    arrange(desc(tootlus)) %>%
+    select(symbol, nimi, hind, tootlus) -> ul11
+kable(ul11, "html", format.args = list(big.mark = " "))
+```
+
+### kukkujad
+
+```{r echo=FALSE}
+aktsiad %>%
+    arrange(tootlus) %>%
+    top_n(3, desc(tootlus)) %>%
+    select(symbol, nimi, hind, tootlus) -> ul12
+kable(ul12, "html", format.args = list(big.mark = " "))
+```
+
+## Ülesanne 2 - ülevaade sektorite lõikes
+```{r echo=FALSE}
+aktsiad %>%
+    mutate(kaive = hind * kogus) %>%
+    group_by(sektor) %>%
+    summarise(kesk_tootlus = mean(tootlus, na.rm = TRUE),
+              kogu_kaive = sum(kaive, na.rm = TRUE),
+              kesk_kaive = mean(kaive, na.rm = TRUE),
+              arv = n()
+              ) %>%
+    filter(arv >= 30) %>%
+    arrange(desc(kogu_kaive)) %>%
+    select(sektor, kesk_tootlus, kogu_kaive, kesk_kaive, arv) -> ul2
+kable(ul2, "html", format.args = list(big.mark = " "))
+```
+
+## Ülesanne 3 - kauplemisalgoritm
+
+```{r echo=FALSE}
+kauplemisalgoritm <- function(data) {
+    data %>%
+        mutate(dividend_aktsia_kohta = if_else(is.na(dividend_aktsia_kohta), 0, dividend_aktsia_kohta)) %>%
+        mutate(kasum_hind_suhe = kasum_aktsia_kohta / hind,
+               div_maar = dividend_aktsia_kohta / hind) %>%
+        mutate(atraktiivsus = 0.5 * kasum_hind_suhe + 0.5 * div_maar) %>%
+        top_n(3, atraktiivsus) %>%
+        arrange(desc(atraktiivsus)) %>%
+        select(symbol) -> top_valik
+    return(c(top_valik))
+}
+```
+
+## Ülesanne 4 - turvaline kauplemisalgoritm ja ostusoovitused
+
+```{r echo=FALSE}
+kauplemisalgoritm_turvaline <- function(data) {
+    safe <- c("AAPL", "AMZN", "FB", "GOOG", "IBM", "NFLX", "NVDA")
+    data %>%
+        filter(symbol %in% safe) -> ohutud_aktsiad
+    return(kauplemisalgoritm(ohutud_aktsiad))
+}
+kauplemisalgoritm_turvaline(aktsiad)
+```
